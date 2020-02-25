@@ -1,6 +1,6 @@
 import pandas as pd
 import sqlite3
-con = sqlite3.connect(":memory:") # make a database in memory or infile like 'example.db'
+con = sqlite3.connect(":memory:")  # make a database in memory or infile like 'example.db'
 
 # make cursor object to call execute() method and run SQL commands:
 cur = con.cursor()
@@ -39,15 +39,13 @@ except sqlite3.Error as e:
 # print results method 2 - one record
 # print(cur.fetchone())
 
-# print results method 3 similar to method 1, but with save to varaiable
-records = cur.fetchall()
-final = []
+# print results method 3 similar to method 1, but with save to variable
+records = cur.fetchall()  # data as a list, inside tuples
 for row in records:
     print(row)
-    final.append(row)
 
 # make a pandas dataframe
-print(pd.DataFrame(final, columns=['id', 'name', 'surname', 'phone']))
+print(pd.DataFrame(records, columns=['id', 'name', 'surname', 'phone']))
 
 # close connection
 con.close()
